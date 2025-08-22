@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: #0d0d1a url("https://raw.githubusercontent.com/usuario/proyecto/main/fondo.jpg") no-repeat center center fixed;
+  background: #0d0d1a url("fondo.png") no-repeat center center fixed;
   background-size: cover;
   margin: 0;
   padding: 0;
