@@ -1,2 +1,2 @@
 # PAGINA-WEB-SISTEMAS-OPERATIVOS
-ese pleao dejo tarea
+ese pelao dejo tarea
