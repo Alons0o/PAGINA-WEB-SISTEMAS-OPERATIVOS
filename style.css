@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: #0d0d1a url("fondo.png") no-repeat center center fixed;
+  background: url("fondo.png") no-repeat center center fixed; /* tu imagen en la misma carpeta */
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -11,31 +11,35 @@ body {
   justify-content: flex-start;
 }
 
-
+/* Título */
 h1 {
   text-align: center;
   color: #00f7ff;
   margin: 20px 0;
-  text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+  font-size: 2.2em;
+  text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 40px #00f7ff;
 }
 
+/* Contenedor principal */
 #quiz-container {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65); /* fondo semitransparente para que el texto resalte */
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 20px #00f7ff, 0 0 40px #00f7ff;
+  box-shadow: 0 0 20px #00f7ff;
   width: 90%;
   max-width: 600px;
 }
 
+/* Pregunta */
 .question {
   font-size: 1.3em;
   margin-bottom: 25px;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
-  text-shadow: 0 0 8px #00f7ff;
+  text-shadow: 0 0 6px #00f7ff, 0 0 12px #00f7ff;
 }
 
+/* Opciones */
 .options {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -47,11 +51,10 @@ h1 {
   padding: 15px;
   font-size: 1em;
   color: #fff;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   border: none;
   clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0 50%);
-  background: rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 8px #00f7ff, 0 0 16px #00f7ff;
   text-shadow: 0 0 8px #00f7ff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -61,6 +64,8 @@ h1 {
   content: attr(data-letter) ".";
   font-weight: bold;
   margin-right: 6px;
+  color: #00f7ff;
+  text-shadow: 0 0 10px #00f7ff;
 }
 
 .options button:hover {
@@ -68,11 +73,12 @@ h1 {
   box-shadow: 0 0 12px #00f7ff, 0 0 24px #00f7ff, 0 0 48px #00f7ff;
 }
 
+/* Puntaje */
 .score {
   font-weight: bold;
   margin-top: 25px;
   font-size: 1.2em;
   color: #00f7ff;
   text-align: center;
-  text-shadow: 0 0 10px #00f7ff;
+  text-shadow: 0 0 8px #00f7ff, 0 0 16px #00f7ff;
 }
