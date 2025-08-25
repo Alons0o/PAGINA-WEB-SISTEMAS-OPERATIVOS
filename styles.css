@@ -1,86 +1,54 @@
-body {
-    font-family: Arial, sans-serif;
-    background: url("fondo1.jpg") no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-h1 {
-    text-align: center;
-    color: #00f7ff;
-    margin: 20px 0;
-    font-size: 2.2em;
-    text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 40px #00f7ff;
-}
-
-h2.prompt {
-    text-align: center;
-    color: #ffffff;
-    font-size: 1.5em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 8px #ffffff;
-}
-
-#welcome-page, #game-container {
+/* ... (estilos existentes, no los modifiques) ... */
+#result-screen {
+    background: rgba(0, 0, 0, 0.65);
     padding: 20px;
     border-radius: 12px;
+    box-shadow: 0 0 20px #00f7ff;
     width: 90%;
     max-width: 600px;
     text-align: center;
     color: #fff;
+    margin-top: 20px;
 }
 
-#welcome-page {
-    background: rgba(0, 0, 0, 0.65);
-    box-shadow: 0 0 20px #00f7ff;
-}
-
-#game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-#welcome-title {
-    font-size: 3em;
-    font-weight: bold;
+#result-title {
+    font-size: 2em;
     color: #00f7ff;
-    text-shadow: 0 0 15px #00f7ff, 0 0 30px #00f7ff, 0 0 60px #00f7ff;
+    text-shadow: 0 0 10px #00f7ff;
 }
 
-#quiz-container {
-    background: rgba(0, 0, 0, 0.65);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px #00f7ff;
-    width: 100%;
-    max-width: 500px;
+#final-score {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
-#input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+#question-results {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 1em;
 }
 
-#name-input {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    width: 80%;
-    max-width: 300px;
+.question-result-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-#start-button, #play-button {
+.question-result-item span {
+    font-weight: bold;
+}
+
+.correct-answer {
+    color: #00ff00;
+}
+
+.incorrect-answer {
+    color: #ff0000;
+}
+
+#restart-button {
+    margin-top: 20px;
     padding: 12px 25px;
     font-size: 1.1em;
     color: #fff;
@@ -91,139 +59,8 @@ h2.prompt {
     transition: background-color 0.3s ease;
 }
 
-#start-button:hover, #play-button:hover {
+#restart-button:hover {
     background: #00e0ff;
 }
 
-#theme-selector {
-    padding: 10px;
-    font-size: 1em;
-    border-radius: 5px;
-    border: none;
-    width: 80%;
-    max-width: 300px;
-    margin-bottom: 20px;
-}
-
-#difficulty-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.difficulty-btn {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.4);
-    border: 2px solid #00f7ff;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.difficulty-btn:hover {
-    background: rgba(0, 247, 255, 0.2);
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #00f7ff;
-}
-
-.difficulty-btn.active {
-    background: #00f7ff;
-    color: black;
-    font-weight: bold;
-    box-shadow: 0 0 15px #00f7ff;
-}
-
-.question {
-    font-size: 1.3em;
-    margin-bottom: 25px;
-    color: #ffffff;
-    text-align: center;
-    text-shadow: 0 0 6px #00f7ff, 0 0 12px #00f7ff;
-}
-
-.options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.options button {
-    position: relative;
-    padding: 15px;
-    font-size: 1em;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.6);
-    cursor: pointer;
-    border: none;
-    clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0 50%);
-    box-shadow: 0 0 8px #00f7ff, 0 0 16px #00f7ff;
-    text-shadow: 0 0 8px #00f7ff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.options button::before {
-    content: attr(data-letter) ".";
-    font-weight: bold;
-    margin-right: 6px;
-    color: #00f7ff;
-    text-shadow: 0 0 10px #00f7ff;
-}
-
-.options button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 12px #00f7ff, 0 0 24px #00f7ff, 0 0 48px #00f7ff;
-}
-
-.score {
-    font-weight: bold;
-    margin-top: 25px;
-    font-size: 1.2em;
-    color: #00f7ff;
-    text-align: center;
-    text-shadow: 0 0 8px #00f7ff, 0 0 16px #00f7ff;
-}
-
-/* --- ESTILOS PARA LA RETROALIMENTACIÓN --- */
-#feedback-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px 40px;
-    border-radius: 15px;
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    z-index: 1000;
-    box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
-    animation: fade-in-out 1.5s forwards;
-    display: none; /* Oculto por defecto */
-}
-
-#feedback-message.correct {
-    color: #00ff00; /* Verde para correcto */
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-}
-
-#feedback-message.incorrect {
-    color: #ff0000; /* Rojo para incorrecto */
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-}
-
-#feedback-message .fa-check, #feedback-message .fa-xmark {
-    font-size: 1.5em;
-    margin-right: 10px;
-}
-
-/* Animación de entrada y salida */
-@keyframes fade-in-out {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; }
-}
+/* ... (continúa con los estilos de #feedback-message) ... */
