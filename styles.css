@@ -42,10 +42,9 @@ h2.prompt {
     box-shadow: 0 0 20px #00f7ff;
 }
 
-/* --- ESTE ES EL CAMBIO CLAVE PARA QUE LOS ELEMENTOS SE APILEN --- */
 #game-container {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     gap: 20px;
 }
@@ -57,18 +56,14 @@ h2.prompt {
     text-shadow: 0 0 15px #00f7ff, 0 0 30px #00f7ff, 0 0 60px #00f7ff;
 }
 
-/* --- CAMBIO EN EL QUIZ-CONTAINER PARA EL DISEÑO --- */
 #quiz-container {
     background: rgba(0, 0, 0, 0.65);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 20px #00f7ff;
     width: 100%;
-    display: flex; /* Usar flexbox */
-    flex-direction: column; /* Apilar elementos verticalmente */
-    align-items: center; /* Centrar el contenido horizontalmente */
+    max-width: 500px;
 }
-
 
 #input-container {
     display: flex;
@@ -189,4 +184,46 @@ h2.prompt {
     color: #00f7ff;
     text-align: center;
     text-shadow: 0 0 8px #00f7ff, 0 0 16px #00f7ff;
+}
+
+/* --- ESTILOS PARA LA RETROALIMENTACIÓN --- */
+#feedback-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+    animation: fade-in-out 1.5s forwards;
+    display: none; /* Oculto por defecto */
+}
+
+#feedback-message.correct {
+    color: #00ff00; /* Verde para correcto */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+#feedback-message.incorrect {
+    color: #ff0000; /* Rojo para incorrecto */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+#feedback-message .fa-check, #feedback-message .fa-xmark {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+/* Animación de entrada y salida */
+@keyframes fade-in-out {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 }
