@@ -67,7 +67,7 @@ const allQuestions = {
             },
             {
                 question: "¿Qué etiqueta HTML se usa para un encabezado de primer nivel?",
-                options: ["<h1>", "<header>", "<head>", "<title>"],
+                options: ["<h1 >", "<header >", "<head >", "<title >"],
                 answer: 0
             }
         ],
@@ -179,6 +179,11 @@ const allQuestions = {
         ],
         medio: [
             {
+                question: "¿Qué es un 'algoritmo'?",
+                options: ["Un tipo de programa", "Una secuencia de pasos para resolver un problema", "Un error de código", "Un lenguaje de programación"],
+                answer: 1
+            },
+            {
                 question: "¿Qué protocolo se usa para enviar correos electrónicos?",
                 options: ["FTP", "HTTP", "SMTP", "TCP"],
                 answer: 2
@@ -187,11 +192,6 @@ const allQuestions = {
                 question: "¿Qué significa 'RAM'?",
                 options: ["Random Access Memory", "Read Access Memory", "Remote Access Module", "Real-time Application Management"],
                 answer: 0
-            },
-            {
-                question: "¿Qué es un 'algoritmo'?",
-                options: ["Un tipo de programa", "Una secuencia de pasos para resolver un problema", "Un error de código", "Un lenguaje de programación"],
-                answer: 1
             }
         ],
         dificil: [
@@ -218,7 +218,7 @@ let currentQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let userName = "";
-let userAnswers = [];
+let selectedDifficulty = "facil"; // Dificultad por defecto
 
 // Elementos del DOM
 const welcomePage = document.getElementById("welcome-page");
@@ -233,14 +233,6 @@ const quizGame = document.getElementById("quiz-game");
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const scoreEl = document.getElementById("score");
-const feedbackMessage = document.getElementById("feedback-message");
-// No es necesario declarar estas variables aquí, se declaran dentro de la función showResults
-// const resultScreen = document.getElementById("result-screen");
-// const resultTitle = document.getElementById("result-title");
-// const finalScore = document.getElementById("final-score");
-// const questionResults = document.getElementById("question-results");
-// const restartButton = document.getElementById("restart-button");
-
 
 // Evento para el botón de inicio
 startButton.addEventListener("click", () => {
@@ -249,7 +241,8 @@ startButton.addEventListener("click", () => {
         welcomePage.style.display = "none";
         gameContainer.style.display = "flex";
         welcomeTitle.textContent = `¡Hola, ${userName}!`;
-        document.querySelector(`.difficulty-btn[data-difficulty="facil"]`).classList.add("active");
+        // Marcar la dificultad por defecto como activa
+        document.querySelector(`.difficulty-btn[data-difficulty="${selectedDifficulty}"]`).classList.add("active");
     } else {
         alert("Por favor, ingresa tu nombre para comenzar.");
     }
@@ -258,21 +251,17 @@ startButton.addEventListener("click", () => {
 // Eventos para los botones de dificultad
 difficultyButtons.forEach(button => {
     button.addEventListener("click", () => {
+        // Remover la clase 'active' de todos los botones
         difficultyButtons.forEach(btn => btn.classList.remove("active"));
+        // Añadir la clase 'active' al botón clickeado
         button.classList.add("active");
+        selectedDifficulty = button.dataset.difficulty;
     });
 });
 
 // Evento para el botón de jugar
 playButton.addEventListener("click", () => {
     const selectedTheme = themeSelector.value;
-    const selectedDifficultyBtn = document.querySelector(".difficulty-btn.active");
-    if (!selectedDifficultyBtn) {
-        alert("Por favor, elige una dificultad.");
-        return;
-    }
-    const selectedDifficulty = selectedDifficultyBtn.dataset.difficulty;
-    
     currentQuestions = allQuestions[selectedTheme][selectedDifficulty];
     
     if (currentQuestions && currentQuestions.length > 0) {
@@ -280,21 +269,12 @@ playButton.addEventListener("click", () => {
         quizGame.style.display = "flex";
         currentQuestionIndex = 0;
         score = 0;
-        userAnswers = [];
         scoreEl.textContent = "Puntaje: 0";
         showQuestion();
     } else {
         alert("No hay preguntas para este tema o dificultad.");
     }
 });
-
-// Evento para el botón de reiniciar
-// Este evento debe ser agregado dentro de showResults, ya que el botón solo existe allí
-// restartButton.addEventListener("click", () => {
-//     resultScreen.style.display = "none";
-//     document.getElementById("quiz-container").style.display = "flex";
-// });
-
 
 function showQuestion() {
     optionsEl.innerHTML = "";
@@ -308,98 +288,22 @@ function showQuestion() {
     });
 }
 
-function showFeedback(isCorrect) {
-    feedbackMessage.style.display = "block";
-    feedbackMessage.classList.remove("correct", "incorrect");
-    feedbackMessage.innerHTML = "";
-
-    if (isCorrect) {
-        feedbackMessage.classList.add("correct");
-        feedbackMessage.innerHTML = '<i class="fa-solid fa-check"></i> ¡Correcto!';
-    } else {
-        feedbackMessage.classList.add("incorrect");
-        feedbackMessage.innerHTML = '<i class="fa-solid fa-xmark"></i> Incorrecto';
-    }
-
-    setTimeout(() => {
-        feedbackMessage.style.display = "none";
-    }, 1500);
-}
-
-function showResults() {
-    quizGame.style.display = "none";
-    
-    // Obtener los elementos de la pantalla de resultados aquí
-    const resultScreen = document.getElementById("result-screen");
-    const resultTitle = document.getElementById("result-title");
-    const finalScore = document.getElementById("final-score");
-    const questionResults = document.getElementById("question-results");
-    const restartButton = document.getElementById("restart-button");
-
-    resultScreen.style.display = "flex";
-    resultTitle.textContent = `Juego Terminado, ${userName}!`;
-    finalScore.textContent = `Tu puntaje final es ${score} de ${currentQuestions.length}`;
-    
-    questionResults.innerHTML = "";
-    userAnswers.forEach(answer => {
-        const item = document.createElement("div");
-        item.className = "question-result-item";
-        
-        const questionText = document.createElement("p");
-        questionText.textContent = `Pregunta: ${answer.question}`;
-        
-        const yourAnswer = document.createElement("p");
-        yourAnswer.textContent = `Tu respuesta: ${answer.userAnswer}`;
-        
-        const correctAnswer = document.createElement("p");
-        correctAnswer.textContent = `Respuesta correcta: ${answer.correctAnswer}`;
-        
-        if (answer.isCorrect) {
-            yourAnswer.classList.add("correct-answer");
-            correctAnswer.classList.add("correct-answer");
-            item.innerHTML += '<i class="fa-solid fa-check correct-answer"></i> ';
-        } else {
-            yourAnswer.classList.add("incorrect-answer");
-            correctAnswer.classList.add("incorrect-answer");
-            item.innerHTML += '<i class="fa-solid fa-xmark incorrect-answer"></i> ';
-        }
-
-        item.appendChild(questionText);
-        item.appendChild(yourAnswer);
-        item.appendChild(correctAnswer);
-        questionResults.appendChild(item);
-    });
-
-    // Agregar el evento de click al botón de reiniciar aquí
-    restartButton.addEventListener("click", () => {
-        resultScreen.style.display = "none";
-        document.getElementById("quiz-container").style.display = "flex";
-    });
-}
-
-
 function checkAnswer(selected) {
-    const isCorrect = (selected === currentQuestions[currentQuestionIndex].answer);
-    showFeedback(isCorrect);
-    
-    userAnswers.push({
-        question: currentQuestions[currentQuestionIndex].question,
-        userAnswer: currentQuestions[currentQuestionIndex].options[selected],
-        correctAnswer: currentQuestions[currentQuestionIndex].options[currentQuestions[currentQuestionIndex].answer],
-        isCorrect: isCorrect
-    });
-    
-    if (isCorrect) {
+    if (selected === currentQuestions[currentQuestionIndex].answer) {
         score++;
+        alert("¡Correcto!");
+    } else {
+        alert("Incorrecto");
     }
     
-    setTimeout(() => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < currentQuestions.length) {
-            showQuestion();
-        } else {
-            showResults();
-        }
-        scoreEl.textContent = `Puntaje: ${score}`;
-    }, 1500);
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuestions.length) {
+        showQuestion();
+    } else {
+        alert(`Juego terminado. Tu puntaje es ${score} de ${currentQuestions.length}`);
+        // Ocultar el juego y mostrar el menú de nuevo
+        quizGame.style.display = "none";
+        document.getElementById("quiz-container").style.display = "flex";
+    }
+    scoreEl.textContent = `Puntaje: ${score}`;
 }
