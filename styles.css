@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 h1 {
@@ -29,46 +29,16 @@ h2.prompt {
 }
 
 #welcome-page, #game-container {
+    background: rgba(0, 0, 0, 0.65);
     padding: 20px;
     border-radius: 12px;
+    box-shadow: 0 0 20px #00f7ff;
     width: 90%;
     max-width: 600px;
+    margin-top: 50px;
     text-align: center;
     color: #fff;
 }
-
-#welcome-page {
-    background: rgba(0, 0, 0, 0.65);
-    box-shadow: 0 0 20px #00f7ff;
-}
-
-/* --- ESTE ES EL CAMBIO CLAVE PARA QUE LOS ELEMENTOS SE APILEN --- */
-#game-container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    gap: 20px;
-}
-
-#welcome-title {
-    font-size: 3em;
-    font-weight: bold;
-    color: #00f7ff;
-    text-shadow: 0 0 15px #00f7ff, 0 0 30px #00f7ff, 0 0 60px #00f7ff;
-}
-
-/* --- CAMBIO EN EL QUIZ-CONTAINER PARA EL DISEÑO --- */
-#quiz-container {
-    background: rgba(0, 0, 0, 0.65);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px #00f7ff;
-    width: 100%;
-    display: flex; /* Usar flexbox */
-    flex-direction: column; /* Apilar elementos verticalmente */
-    align-items: center; /* Centrar el contenido horizontalmente */
-}
-
 
 #input-container {
     display: flex;
@@ -110,6 +80,7 @@ h2.prompt {
     margin-bottom: 20px;
 }
 
+/* Estilos para los botones de dificultad */
 #difficulty-buttons {
     display: flex;
     justify-content: center;
@@ -139,6 +110,17 @@ h2.prompt {
     color: black;
     font-weight: bold;
     box-shadow: 0 0 15px #00f7ff;
+}
+
+/* Estilos para el quiz (mantén el resto igual) */
+#quiz-container {
+    background: rgba(0, 0, 0, 0.65);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00f7ff;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
 }
 
 .question {
