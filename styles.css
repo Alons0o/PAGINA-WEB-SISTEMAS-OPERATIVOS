@@ -8,10 +8,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centrar el contenido verticalmente */
+    justify-content: center;
 }
 
-/* Título de la página */
 h1 {
     text-align: center;
     color: #00f7ff;
@@ -20,7 +19,6 @@ h1 {
     text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 40px #00f7ff;
 }
 
-/* Títulos dentro de los contenedores */
 h2.prompt {
     text-align: center;
     color: #ffffff;
@@ -30,7 +28,6 @@ h2.prompt {
     text-shadow: 0 0 8px #ffffff;
 }
 
-/* Contenedor principal de la bienvenida y del juego */
 #welcome-page, #game-container {
     padding: 20px;
     border-radius: 12px;
@@ -40,21 +37,18 @@ h2.prompt {
     color: #fff;
 }
 
-/* Estilos específicos para la página de bienvenida */
 #welcome-page {
     background: rgba(0, 0, 0, 0.65);
     box-shadow: 0 0 20px #00f7ff;
 }
 
-/* Contenedor del nombre y las opciones */
 #game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px; /* Espacio entre el título y el contenedor de opciones */
+    gap: 20px;
 }
 
-/* Título de bienvenida del usuario, más grande y prominente */
 #welcome-title {
     font-size: 3em;
     font-weight: bold;
@@ -62,17 +56,15 @@ h2.prompt {
     text-shadow: 0 0 15px #00f7ff, 0 0 30px #00f7ff, 0 0 60px #00f7ff;
 }
 
-/* Contenedor de las opciones del quiz, con fondo y sombra */
 #quiz-container {
     background: rgba(0, 0, 0, 0.65);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 20px #00f7ff;
-    width: 100%; /* Ocupa todo el ancho del #game-container */
+    width: 100%;
     max-width: 500px;
 }
 
-/* Estilos para el input y el botón de inicio */
 #input-container {
     display: flex;
     flex-direction: column;
@@ -103,7 +95,6 @@ h2.prompt {
     background: #00e0ff;
 }
 
-/* Estilos para el select del tema */
 #theme-selector {
     padding: 10px;
     font-size: 1em;
@@ -114,7 +105,6 @@ h2.prompt {
     margin-bottom: 20px;
 }
 
-/* Estilos para los botones de dificultad */
 #difficulty-buttons {
     display: flex;
     justify-content: center;
@@ -146,7 +136,6 @@ h2.prompt {
     box-shadow: 0 0 15px #00f7ff;
 }
 
-/* Estilos para el quiz (mantén el resto igual) */
 .question {
     font-size: 1.3em;
     margin-bottom: 25px;
@@ -195,4 +184,46 @@ h2.prompt {
     color: #00f7ff;
     text-align: center;
     text-shadow: 0 0 8px #00f7ff, 0 0 16px #00f7ff;
+}
+
+/* --- ESTILOS PARA LA RETROALIMENTACIÓN --- */
+#feedback-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+    animation: fade-in-out 1.5s forwards;
+    display: none; /* Oculto por defecto */
+}
+
+#feedback-message.correct {
+    color: #00ff00; /* Verde para correcto */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+#feedback-message.incorrect {
+    color: #ff0000; /* Rojo para incorrecto */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+#feedback-message .fa-check, #feedback-message .fa-xmark {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+/* Animación de entrada y salida */
+@keyframes fade-in-out {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 }
